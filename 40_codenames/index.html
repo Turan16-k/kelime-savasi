@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codenames</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ================= KURULUM EKRANI ================= -->
+    <section id="setup-screen" class="screen active">
+      <header class="brand">
+        <h1>CODENAMES</h1>
+        <p class="tagline">İpucu ver, doğru ajanları bul, suikastçıdan kaç!</p>
+      </header>
+
+      <div class="card">
+        <h2>Nasıl Oynanır?</h2>
+        <ul class="rules">
+          <li>25 kelime dizilir. <b>Kırmızı</b> ve <b>Mavi</b> takım yarışır.</li>
+          <li>Her takımın bir <b>Kaptanı</b> gizli haritayı görür.</li>
+          <li>Kaptan tek kelime + sayı şeklinde ipucu verir (örn. "Mutfak 3").</li>
+          <li>Takım kelimelere dokunur. Kendi rengini bulursa devam eder.</li>
+          <li>Nötr/rakip kelime → sıra biter. <b>Suikastçı (siyah)</b> → o takım anında kaybeder.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Ayarlar</h2>
+        <div class="setting-row">
+          <label for="red-name">Kırmızı takım adı</label>
+          <input type="text" id="red-name" value="Kırmızı" maxlength="14" />
+        </div>
+        <div class="setting-row">
+          <label for="blue-name">Mavi takım adı</label>
+          <input type="text" id="blue-name" value="Mavi" maxlength="14" />
+        </div>
+      </div>
+
+      <button id="start-game-btn" class="btn btn-primary btn-lg">Yeni Oyun Dağıt</button>
+    </section>
+
+    <!-- ================= OYUN EKRANI ================= -->
+    <section id="game-screen" class="screen">
+      <div class="game-top">
+        <div class="pill score-red"><span id="red-left">9</span> <small id="red-label">Kırmızı</small></div>
+        <div class="turn-pill" id="turn-pill">Sıra: Kırmızı</div>
+        <div class="pill score-blue"><span id="blue-left">8</span> <small id="blue-label">Mavi</small></div>
+      </div>
+
+      <div class="clue-bar">
+        <input type="text" id="clue-word" placeholder="İpucu kelimesi" maxlength="20" />
+        <input type="number" id="clue-num" placeholder="#" min="0" max="9" />
+        <button id="give-clue-btn" class="btn btn-clue">Ver</button>
+      </div>
+      <div class="active-clue" id="active-clue">İpucu bekleniyor…</div>
+
+      <div class="board" id="board"></div>
+
+      <div class="controls">
+        <button id="spymaster-btn" class="btn btn-ghost">👁 Kaptan Görünümü (basılı tut)</button>
+        <button id="end-turn-btn" class="btn btn-pass">Sırayı Bitir</button>
+      </div>
+      <button id="new-game-btn" class="btn btn-ghost btn-sm">↺ Yeni Oyun</button>
+    </section>
+
+    <!-- ================= KAZANAN EKRANI ================= -->
+    <section id="winner-screen" class="screen">
+      <div class="card center">
+        <div class="trophy" id="winner-emoji">🏆</div>
+        <h2 id="winner-name">Kazanan</h2>
+        <p class="muted" id="winner-reason"></p>
+        <button id="play-again-btn" class="btn btn-primary btn-lg">Yeniden Dağıt</button>
+        <button id="back-setup-btn" class="btn btn-ghost">Ayarlara Dön</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="words.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
